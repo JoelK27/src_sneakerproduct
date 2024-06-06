@@ -3,21 +3,19 @@ var productDesc = document.getElementById('productDesc');
 var productModel = document.getElementById('productModel');
 var productPrice = document.getElementById('productPrice');
 var productBtn = document.getElementById('productBtn');
-var productImg = document.getElementById('productImg');
+// var productImg = document.getElementById('productImg'); // Removed line
 var formControl = document.getElementsByClassName('form-control');
-var myClose = document.getElementsByClassName('myClose');
+// var myClose = document.getElementsByClassName('myClose'); // Removed line
 var mySearchInp = document.getElementById('mySearchInp');
 var productHeadline = document.getElementById('productHeadline');
-//var viewBtn = document.getElementById('viewBtn');
-var successProductAlert = document.getElementById('successProductAlert');
-var dataRow = document.getElementById('dataRow');
+// var dataRow = document.getElementById('dataRow'); // Removed line
 var productContainer;
 var currentIndex = 0;
 //check for local storage at begining
 if (localStorage.getItem('productsStorage') == null) {
     productContainer = [];
     productHeadline.style.display = 'none';
-    searchItem.style.display = 'none';
+    // searchItem.style.display = 'none'; // Commented out line
 } else {
     productContainer = JSON.parse(localStorage.getItem('productsStorage'));
     showProducts();
@@ -39,22 +37,10 @@ productBtn.addEventListener('click', function () {
 
 });
 
-function showAlert() {
-    $(successProductAlert).fadeIn(500, function () {
-        $(successProductAlert).fadeOut(2000);
-    });
-}
-//if (productName.value == '' && productDesc.value == '' && productModel.value == '' && productPrice.value == '')
-function disableBtn() {
-    for (var i = 0; i < formControl.length - 1; i++) {
-        if (formControl[i].value == '') {
-            productBtn.disabled = true;
-            //console.log('empty');
-        } else {
-            productBtn.removeAttribute('disabled');
-        }
-    }
-}
+// Define successProductAlert variable
+var successProductAlert = document.getElementById('successProductAlert');
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> //should be added to the html file
 
 function addProducts() {
 
@@ -71,6 +57,8 @@ function addProducts() {
     console.log('products added');
 }
 
+var searchItem = document.getElementById('searchItem');
+
 function showProducts() {
 
     var rows = '';
@@ -84,15 +72,7 @@ function showProducts() {
     searchItem.style.display = 'block';
 }
 
-function updateProduct(index) {
-    //console.log('clicked');
-    productName.value = productContainer[index].productName;
-    productDesc.value = productContainer[index].productDesc;
-    productPrice.value = productContainer[index].productPrice;
-    productModel.value = 'sn123';
-    productBtn.innerHTML = 'update product';
-    currentIndex = index;
-}
+// Removed the unused 'updateProduct' function
 
 function saveUpdate() {
     var products = {
@@ -114,11 +94,8 @@ function emptyFields() {
     disableBtn();
 }
 
-function deleteItem(item) {
-    productContainer.splice(item, 1);
-    localStorage.setItem('productsStorage', JSON.stringify(productContainer));
-    showProducts();
-}
+// Removed the unused 'deleteItem' function
+
 mySearchInp.addEventListener('keyup', function (e) {
     //console.log(e.target.value);
     var rows = '';
